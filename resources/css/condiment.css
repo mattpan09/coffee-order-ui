@@ -1,0 +1,225 @@
+body {
+    background-color: #F8EACA;
+}
+
+nav { 
+    height: 57px;
+    top: 58px;
+    left: 29px;
+}
+
+
+nav ul {
+    margin-right: 120px;
+    margin-top: 45px;
+    margin-bottom: 0px;
+    padding: 0;
+    float: right;
+
+}
+
+nav ul li {
+    display: inline;
+    padding: 0 20px;
+    font-weight: 700px;
+    font-size: 32px;
+    line-height: 38.73px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+nav h1 {
+    font-size: 24px;
+    line-height: 29.05px;
+    font-weight: 700px;
+    color: #CE6D46;
+    width: 150px;
+    height: 57px;
+    /* top: 30px; */
+    margin-top: 40px;
+    left: 80px;
+    position: absolute;
+}
+
+nav h1 a {
+    text-decoration: none;
+    color: #CE6D46;
+}
+
+.condiments button {
+    background: #CDB38C;
+    width: 223px;
+    height: 181px;
+
+    border-radius: 8px;
+    padding: 10px 30px 10px 30px;
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 38.73px;
+}
+
+.condiments h2 {
+    font-size: 32px;
+    margin-top: 240px;
+    margin-left: 580px;
+}
+
+
+.milk {
+    /* margin-right: 140px; */
+
+    margin-left: 480px;
+    margin-top: 50px;
+    position: absolute;
+
+}
+
+.mocha {
+    margin-left: 480px;
+    position: absolute;
+    margin-top: 300px;
+
+}
+
+.soy {
+    margin-left: 750px;
+    position: absolute;
+    margin-top: 50px;
+}
+
+.whip {
+    margin-left: 750px;
+    position: absolute;
+    margin-top: 300px;
+}
+
+#order {
+    border: 5px solid black;
+    border-radius: 10px;
+    width: 300px;
+    height: 666px;
+    margin-left: 1210px;
+    margin-top: -150px;
+    position: absolute;
+}
+#order h2 {
+    color: #F99999;
+    font-size: 32px;
+    font-weight: 700px;
+    text-align: center;
+}
+
+
+#order .condimentButtonInOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 10px;
+    text-align: center;
+    top: 40px;
+    margin-top: 20px;
+    margin-left: 11.5px;
+    position: relative;
+}
+
+#order #confirmOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    position: absolute;
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 515px;
+    margin-left: 11.5px;
+}
+
+#order #beverageButtonInOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    position: absolute;
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 0px;
+    margin-left: 11.5px;
+
+}
+
+#milkButtonInOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 10px;
+    text-align: center;
+    top: 40px;
+    margin-top: 20px;
+    margin-left: 11.5px;
+    position: relative;
+}
+
+#mochaButtonInOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 10px;
+    text-align: center;
+    top: 40px;
+    margin-top: 20px;
+    margin-left: 11.5px;
+    position: relative;
+}
+
+#soyButtonInOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 10px;
+    text-align: center;
+    top: 40px;
+    margin-top: 20px;
+    margin-left: 11.5px;
+    position: relative;
+}
+
+#whipButtonInOrder {
+    background: #AA782C;
+    width: 278px;
+    height: 43px;
+    border-radius: 8px;
+    /* padding: 10px 30px 10px 30px; */
+    font-size: 32px;
+    font-weight: 700px;
+    line-height: 10px;
+    text-align: center;
+    top: 40px;
+    margin-top: 20px;
+    margin-left: 11.5px;
+    position: relative;
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Condiments - Coffee Order System</title>
+    <link rel="stylesheet" href="./resources/css/condiment.css">
+</head>
+<body>
+    <nav>
+        <h1><a href="home.html">Coffee Order System</a></h1>
+        <ul>
+            <li><a href="orderStatus.html">Order Status</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="condiments">
+        <h2>Add the condiments</h2>
+
+        <div class="milk">
+            <button type="submit" value="Milk" id="milkButton" onclick="addMilkCondiment()">Milk</button>
+        </div>
+        <div class ="mocha">
+            <button type="submit" value="Mocha" id="mochaButton" onclick="addMochaCondiment()">Mocha</button>
+        </div>
+        <div class="soy">
+            <button type="submit" value="Soy" id="soyButton" onclick="addSoyCondiment()">Soy</button>
+        </div>
+        <div class="whip">
+            <button type="submit" value="Whip" id="whipButton" onclick="addWhipCondiment()">Whip</button>
+        </div>
+    </div>
+
+    <div id="order">
+        <h2>My Order</h2>
+        <!-- <button type="submit" class="beverageButtonInOrder">Dark Roast</button> -->
+
+        <!-- This is where to add the order -->
+
+        <a href="" id="confirmOrderLink">
+            <button type="submit" id="confirmOrder">Confirm Order</button>
+        </a>
+    </div>
+    <script>
+        /*
+        In the add condiment page, when a condiment is clicked it will be added to order frame on the right (the cart). 
+        In the add condiment page,, if a condiment in the cart is clicked it will be remover from the cart. 
+        In the add condiment page, if the selected beverage in the cart is clicked, the beverage will be removed from the cart and the user is navigated back to the beverage page.
+        */
+
+        const urlParams = new URLSearchParams(window.location.search);
+        let beverage = urlParams.get('beverage');
+        let beverageButtonInOrder = document.createElement("button");
+        beverageButtonInOrder.id = "beverageButtonInOrder";
+        beverageButtonInOrder.innerHTML = beverage;
+        document.getElementById("order").appendChild(beverageButtonInOrder);
+        beverageButtonInOrder.addEventListener("click", removeBeverage);
+        document.getElementById("confirmOrder").addEventListener("click", confirmOrder);
+
+        async function addMilkCondiment() {
+            if (document.getElementById("milkButtonInOrder")) {
+                return;
+            }
+
+            let newCondimentButton = document.createElement("button");
+            // newCondimentButton.className = "condimentButtonInOrder";
+            newCondimentButton.id = "milkButtonInOrder";
+            newCondimentButton.innerHTML = "Milk";
+            // newCondimentButton.type = "submit";
+            newCondimentButton.addEventListener("click", removeMilkCondiment);
+            document.getElementById("order").appendChild(newCondimentButton);
+        }
+        async function addMochaCondiment() {
+            if (document.getElementById("mochaButtonInOrder")) {
+                return;
+            }
+
+            let newCondimentButton = document.createElement("button");
+            // newCondimentButton.className = "condimentButtonInOrder";
+            newCondimentButton.id = "mochaButtonInOrder";
+            newCondimentButton.innerHTML = "Mocha";
+            newCondimentButton.addEventListener("click", removeMochaCondiment);
+            document.getElementById("order").appendChild(newCondimentButton);
+        }
+        async function addSoyCondiment() {
+            if (document.getElementById("soyButtonInOrder")) {
+                return;
+            }
+
+            let newCondimentButton = document.createElement("button");
+            // newCondimentButton.className = "condimentButtonInOrder";
+            newCondimentButton.id = "soyButtonInOrder";
+            newCondimentButton.innerHTML = "Soy";
+            newCondimentButton.addEventListener("click", removeSoyCondiment);
+            document.getElementById("order").appendChild(newCondimentButton);
+        }
+        async function addWhipCondiment() {
+            if (document.getElementById("whipButtonInOrder")) {
+                return;
+            }
+
+            let newCondimentButton = document.createElement("button");
+            // newCondimentButton.className = "condimentButtonInOrder";
+            newCondimentButton.id = "whipButtonInOrder";
+            newCondimentButton.innerHTML = "Whip";
+            newCondimentButton.addEventListener("click", removeWhipCondiment);
+            document.getElementById("order").appendChild(newCondimentButton);
+        }
+        async function removeMilkCondiment() {
+            let milkButtonInOrder = document.getElementById("milkButtonInOrder");
+            document.getElementById("order").removeChild(milkButtonInOrder);
+        }
+        async function removeMochaCondiment() {
+            let mochaButtonInOrder = document.getElementById("mochaButtonInOrder");
+            document.getElementById("order").removeChild(mochaButtonInOrder);
+        }
+        async function removeSoyCondiment() {
+            let soyButtonInOrder = document.getElementById("soyButtonInOrder");
+            document.getElementById("order").removeChild(soyButtonInOrder);
+        }
+        async function removeWhipCondiment() {
+            let whipButtonInOrder = document.getElementById("whipButtonInOrder");
+            document.getElementById("order").removeChild(whipButtonInOrder);
+        }
+        async function removeBeverage() {
+            let beverageButtonInOrder = document.getElementById("beverageButtonInOrder"); //Remove from the cart
+            document.getElementById("order").removeChild(beverageButtonInOrder);
+            window.location.href = "beverage.html"; // Navigate to the beverage page
+        }
+
+        //Confirm Order
+        async function confirmOrder() {
+            if (!document.getElementById("beverageButtonInOrder")) {
+                alert("Please select a beverage");
+                return;
+            }
+            let beverage = document.getElementById("beverageButtonInOrder").innerHTML;
+            let condiments = [];
+            if (document.getElementById("milkButtonInOrder")) {
+                condiments.push(document.getElementById("milkButtonInOrder").innerHTML);
+            }
+            if (document.getElementById("mochaButtonInOrder")) {
+                condiments.push(document.getElementById("mochaButtonInOrder").innerHTML);
+            }
+            if (document.getElementById("soyButtonInOrder")) {
+                condiments.push(document.getElementById("soyButtonInOrder").innerHTML);
+            }
+            if (document.getElementById("whipButtonInOrder")) {
+                condiments.push(document.getElementById("whipButtonInOrder").innerHTML);
+            }
+
+            let orderDetails = beverage;
+            for (let i = 0; i < condiments.length; i++) {
+                if (i != condiments.length - 1) {
+                    orderDetails += " with " + condiments[i];
+                } else {
+                    orderDetails += " with " + condiments[i];
+                }
+
+            
+            }
+
+            //Get the total price
+            let totalPrice = 0;
+            if (beverage === "House Blend") {
+                totalPrice += 1.65;
+            } else if (beverage === "Dark Roast") {
+                totalPrice += 1.99;
+            } else if (beverage === "Decaf") {
+                totalPrice += 1.28;
+            } else if (beverage === "Espresso") {
+                totalPrice += 1.34;
+            }
+
+            for (let i = 0; i < condiments.length; i++) {
+                if (condiments[i] === "Soy") {
+                    totalPrice += 0.27;
+                } 
+                else if (condiments[i] === "Whip") {
+                    totalPrice += 0.25;
+                } 
+                else if (condiments[i] === "Mocha") {
+                    totalPrice += 0.30;
+                } 
+                else if (condiments[i] === "Milk") {
+                    totalPrice += 0.40;
+                }
+            }
+
+
+            // window.location.ref = "submitOrder.html?orderDetails=" + orderDetails + "&totalPrice=" + totalPrice;
+            document.getElementById("confirmOrderLink").href = "submitOrder.html?orderDetails=" + orderDetails + "&totalPrice=" + totalPrice;
+
+
+
+
+
+            //Go to the submit order page
+
+
+
+
+
+
+
+
+        }
+
+
+
+    </script>
+
+
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Order - Coffee Order System</title>
+    <link rel="stylesheet" href="./resources/css/submitOrder.css">
+</head>
+<body>
+    <nav>
+        <h1><a href="home.html">Coffee Order System</a></h1>
+        <ul>
+            <li><a href="orderStatus.html">Order Status</a></li>
+        </ul>
+    </nav>
+
+    <div class="submitOrder">
+        <h2>Order Placed:</h2>
+
+        
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let orderDetails = urlParams.get('orderDetails');
+        let totalPrice = urlParams.get('totalPrice');
+        totalPrice = parseFloat(totalPrice).toFixed(2);
+
+
+        let orderId = Math.floor(Math.random() * 1000000);
+        let orderIdElement = document.createElement("h2");
+        orderIdElement.innerHTML = "Order id: " + orderId;
+
+        let orderDetailsElement = document.createElement("h2");
+        orderDetailsElement.innerHTML = orderDetails + "!";
+
+        let totalPriceElement = document.createElement("h2");
+        totalPriceElement.innerHTML = "Total: $" + totalPrice;
+
+        document.querySelector(".submitOrder").appendChild(orderIdElement);
+        document.querySelector(".submitOrder").appendChild(orderDetailsElement);
+        document.querySelector(".submitOrder").appendChild(totalPriceElement);
+
+
+        
+
+    </script>
+    
+</body>
+</html>
