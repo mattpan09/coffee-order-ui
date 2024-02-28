@@ -38,9 +38,9 @@
 
         <!-- This is where to add the order -->
 
-        <a href="" id="confirmOrderLink">
-            <button type="submit" id="confirmOrder">Confirm Order</button>
-        </a>
+        <!-- <a href="" id="confirmOrderLink"> -->
+        <button type="submit" id="confirmOrder">Confirm Order</button>
+        <!-- </a> -->
     </div>
     <script>
         /*
@@ -150,57 +150,37 @@
                 condiments.push(document.getElementById("whipButtonInOrder").innerHTML);
             }
 
-            let orderDetails = beverage;
-            for (let i = 0; i < condiments.length; i++) {
-                if (i != condiments.length - 1) {
-                    orderDetails += " with " + condiments[i];
-                } else {
-                    orderDetails += " with " + condiments[i];
-                }
+
+            let host = "https://coffeeorder-mattpan09.onrender.com";
+            order = {
+                beverage: beverage,
+                condiments: condiments
+            }
 
             
-            }
+            let request = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(order)
+            };
 
-            //Get the total price
-            let totalPrice = 0;
-            if (beverage === "House Blend") {
-                totalPrice += 1.65;
-            } else if (beverage === "Dark Roast") {
-                totalPrice += 1.99;
-            } else if (beverage === "Decaf") {
-                totalPrice += 1.28;
-            } else if (beverage === "Espresso") {
-                totalPrice += 1.34;
-            }
+            let data;
 
-            for (let i = 0; i < condiments.length; i++) {
-                if (condiments[i] === "Soy") {
-                    totalPrice += 0.27;
-                } 
-                else if (condiments[i] === "Whip") {
-                    totalPrice += 0.25;
-                } 
-                else if (condiments[i] === "Mocha") {
-                    totalPrice += 0.30;
-                } 
-                else if (condiments[i] === "Milk") {
-                    totalPrice += 0.40;
-                }
-            }
+           
+            fetch(host + "/orders", request).then(response => response.json()).then(data => {
+                console.log(data);
+                let id = data.id;
+                let orderDetails = data.description;
+                //Replace commas with " with " for the order details
+                orderDetails = orderDetails.replace(/,/g, " with ");
+                let totalPrice = data.cost;
 
-
-            // window.location.ref = "submitOrder.html?orderDetails=" + orderDetails + "&totalPrice=" + totalPrice;
-            document.getElementById("confirmOrderLink").href = "submitOrder.html?orderDetails=" + orderDetails + "&totalPrice=" + totalPrice;
-
-
-
-
-
-            //Go to the submit order page
-
-
-
-
+                location.href = "submitOrder.html?orderDetails=" + orderDetails + "&totalPrice=" + totalPrice + "&id=" + id;
+                
+            }).catch(error => console.log('error', error));
+           
 
 
 

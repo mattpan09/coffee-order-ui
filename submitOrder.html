@@ -27,7 +27,7 @@
         totalPrice = parseFloat(totalPrice).toFixed(2);
 
 
-        let orderId = Math.floor(Math.random() * 1000000);
+        let orderId = urlParams.get('id');
         let orderIdElement = document.createElement("h2");
         orderIdElement.innerHTML = "Order id: " + orderId;
 
