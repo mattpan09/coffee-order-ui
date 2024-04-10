@@ -11,6 +11,7 @@
         <h1><a href="index.html">Coffee Order System</a></h1>
         <ul>
             <li><a href="orderStatus.html">Order Status</a></li>
+            <li id="loginPage"><a href="login.html">Login</a></li>
         </ul>
     </nav>
 
@@ -42,6 +43,7 @@
         <button type="submit" id="confirmOrder">Confirm Order</button>
         <!-- </a> -->
     </div>
+    <script src="configuration.js"></script>
     <script>
         /*
         In the add condiment page, when a condiment is clicked it will be added to order frame on the right (the cart). 
@@ -151,7 +153,7 @@
             }
 
 
-            let host = "https://coffeeorder-mattpan09.onrender.com";
+            let host = getHost();
             order = {
                 beverage: beverage,
                 condiments: condiments
@@ -161,7 +163,9 @@
             let request = {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${configuration.token()}`
+
                 },
                 body: JSON.stringify(order)
             };
@@ -169,7 +173,15 @@
             let data;
 
            
-            fetch(host + "/orders", request).then(response => response.json()).then(data => {
+            fetch(host + "/orders", request).then((response) => {
+                if (response.status === 401) {
+                    alert("Unauthorized");
+                    logout();
+                }
+
+                return response.json()
+            })
+            .then(data => {
                 console.log(data);
                 let id = data.id;
                 let orderDetails = data.description;
